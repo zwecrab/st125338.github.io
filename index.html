@@ -17,16 +17,16 @@
             display: none;
             width: 100%;
             height: 100vh;
-            padding: 1.5rem 3rem 3rem 3rem; /* Reduced top padding */
+            padding: 1.5rem 3rem 3rem 3rem;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Changed from center to flex-start */
+            justify-content: flex-start;
             align-items: center;
             text-align: center;
             background: white;
             position: relative;
             overflow-y: auto;
-            padding-top: 2rem; /* Ensure space for header */
+            padding-top: 2rem;
         }
         .slide.active {
             display: flex;
@@ -80,68 +80,81 @@
         }
         .slide-title {
             font-weight: 800;
-            font-size: 3rem;
-            line-height: 1.1;
+            font-size: 2.5rem; /* Slightly smaller for better fit */
+            line-height: 1.2;
             color: #1f2937;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .slide-subtitle {
             font-weight: 600;
-            font-size: 1.5rem;
+            font-size: 1.25rem; /* Slightly smaller */
             color: #4f46e5;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
         .slide-content {
             font-size: 1.1rem;
             color: #374151;
-            max-width: 90%;
+            max-width: 95%;
             line-height: 1.6;
         }
         .grid-2 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             width: 100%;
             max-width: 1200px;
             align-items: start;
         }
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             width: 100%;
             max-width: 1200px;
         }
         .card {
             background: #f8fafc;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 16px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-left: 4px solid #4f46e5;
             text-align: left;
         }
         .principle-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #868f96 0%, #596164 100%);
             color: white;
             padding: 2rem;
             border-radius: 16px;
             text-align: center;
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .principle-card:hover {
             transform: translateY(-5px);
         }
+        .principle-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .principle-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
         .quote-box {
             background: #1f2937;
             color: white;
-            padding: 3rem;
+            padding: 2rem;
             border-radius: 16px;
             border-left: 6px solid #10b981;
             font-style: italic;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             max-width: 80%;
-            margin: 2rem auto;
+            margin: 1.5rem auto;
         }
         .photo-placeholder {
             width: 100%;
@@ -149,11 +162,11 @@
             background: #e5e7eb;
             border-radius: 12px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             color: #6b7280;
             font-size: 0.9rem;
-            margin: 1rem 0;
             border: 2px dashed #d1d5db;
         }
         .team-photos {
@@ -162,19 +175,6 @@
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 2rem;
-        }
-        .team-photo {
-            width: 350px;
-            height: 255px;
-            background: #f3f4f6;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6b7280;
-            font-size: 0.8rem;
-            border: 2px dashed #d1d5db;
-            text-align: center;
         }
         .team-photo-img {
             width: 350px;
@@ -189,18 +189,39 @@
             border-radius: 4px;
             font-weight: 600;
         }
-        .emoji {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .methodology-infographic {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 1rem;
         }
+        .methodology-col {
+            width: 45%;
+            padding: 1rem;
+            border-radius: 12px;
+        }
+        .methodology-col h4 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+        .methodology-col ul {
+            text-align: left;
+            list-style-type: '✔️ ';
+            padding-left: 1.5rem;
+        }
+        .waterfall-col { background-color: #fee2e2; border: 2px solid #ef4444; }
+        .agile-col { background-color: #dbeafe; border: 2px solid #3b82f6; }
+
         @media print {
-            .nav-button, .slide-counter {
-                display: none;
-            }
+            .nav-button, .slide-counter { display: none; }
             .slide {
                 page-break-after: always;
                 display: flex !important;
-                height: 100vh;
+                height: auto;
+                min-height: 100vh;
             }
         }
     </style>
@@ -209,250 +230,240 @@
     <div class="slide-container">
         <!-- Slide 1: Title -->
         <div id="slide1" class="slide active">
-            <!-- <div class="emoji">🚀</div> -->
-            <h1 class="slide-title">From Code to Collaboration</h1>
-            <p class="slide-subtitle">My Journey Through Agile Thinking in Digital Transformation</p>
+            <h1 class="slide-title">How Does an Agile Mindset<br>Turn a Coder into a Collaborator?</h1>
+            <p class="slide-subtitle">A Personal Reflection After ATDT Course</p>
             <div class="mt-6 space-y-2">
                 <p class="text-2xl font-bold text-gray-800">Zwe Htet</p>
                 <p class="text-lg text-gray-600">DSAI Department, SET</p>
+                <p class="text-lg text-gray-600">st125338@ait.asia</p>
                 <p class="text-base text-gray-500">Agile Thinking in Digital Transformation</p>
                 <p class="text-base text-gray-500">Instructor: Stacy Huang</p>
             </div>
             <img src="images/code-to-collaboration.jpg" alt="Code to Collaboration" class="mt-8 rounded-lg shadow-lg max-w-2xl w-full" 
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="photo-placeholder mt-8" style="display:none;">
-                📸 Image not found: images/code-to-collaboration.jpg
-                <br><small>Check filename and location</small>
+                Image not found: images/code-to-collaboration.jpg
+                <small>Check filename and location</small>
             </div>
         </div>
 
-        <!-- Slide 2: Who I Am -->
+        <!-- Slide 2: Who I Am & The Core Problem -->
         <div id="slide2" class="slide">
-            <h2 class="slide-title">🎯 Who I Am & Why I'm Here</h2>
+            <h2 class="slide-title">My Starting Point: The Technical Silo</h2>
             <div class="grid-2">
                 <div class="card">
-                    <h3 class="font-bold text-xl mb-4 text-gray-800">My Technical World</h3>
+                    <h3 class="font-bold text-xl mb-4 text-gray-800">My Story</h3>
                     <ul class="space-y-3 text-left">
-                        <li>• <strong>DSAI Masters Student</strong> at AIT's School of Engineering</li>
-                        <li>• <strong>Data Science & AI</strong> background - algorithms, models, technical solutions</li>
-                        <li>• <strong>Why I crossed schools:</strong> Wanted to understand Project Management & Business Analytics to become a <span class="highlight">tech-business bridge-builder</span></li>
+                        <li>• <strong>DSAI Masters Student:</strong> Deep in algorithms, models, and code.</li>
+                        <li>• <strong>My Comfort Zone:</strong> Finding the "right" technical solution.</li>
+                        <li>• <strong>The Dream:</strong> Crossed into Project Management to become a <span class="highlight">tech-business bridge-builder.</span></li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h3 class="font-bold text-xl mb-4 text-gray-800">My Expectations vs Reality</h3>
+                    <h3 class="font-bold text-xl mb-4 text-gray-800">Expectation vs. Reality</h3>
                     <div class="space-y-4 text-left">
-                        <p><strong>I thought:</strong> "I'll learn some PM frameworks and go back to coding"</p>
-                        <p><strong>I discovered:</strong> "Digital transformation isn't about technology - it's about transforming how people work together"</p>
+                        <p><strong>My Plan:</strong> Learn PM frameworks, then back to my keyboard.</p>
+                        <p><strong>The Revelation:</strong> Digital transformation isn't about better tech. It's about better <span class="font-bold text-indigo-600">human systems.</span></p>
                     </div>
                 </div>
             </div>
             <div class="quote-box mt-6">
-                "This course transformed me from an individual technical contributor to a collaborative bridge-builder who can delight stakeholders by translating between technical and business worlds"
+                "I thought success was a perfect algorithm. I discovered it's a seamless conversation between the people building the tech and the people using it."
             </div>
         </div>
 
-        <!-- Slide 3: Energy & Methodology -->
+        <!-- Slide 3: Methodology Shock & The "Why" -->
         <div id="slide3" class="slide">
-            <h2 class="slide-title">⚡ The Energy & Methodology That Changed Everything</h2>
-            <div class="grid-2">
-                <div class="card">
-                    <h3 class="font-bold text-xl mb-4">Stacy's Digital Transformation Magic</h3>
-                    <ul class="space-y-3 text-left">
-                        <li>• <strong>Positive energy</strong> that literally spread through the classroom</li>
-                        <li>• <strong>Fast-paced learning</strong> using Design Thinking + Lean + Agile integration</li>
-                        <li>• <strong>10-minute sprint activities</strong> that packed more insights than semester-long projects</li>
+            <h2 class="slide-title">The Methodology Shock</h2>
+            <p class="slide-content mb-4">This course felt like stepping into a different universe. The contrast between my engineering background and the Agile way was stark.</p>
+            <div class="methodology-infographic">
+                <div class="methodology-col waterfall-col">
+                    <h4>My Old Thinking: Waterfall</h4>
+                    <ul>
+                        <li>Linear progression</li>
+                        <li>Big-bang delivery</li>
+                        <li>Work in silos</li>
+                        <li>Change is the enemy</li>
+                        <li>Success = plan followed</li>
                     </ul>
                 </div>
-                <div class="card">
-                    <h3 class="font-bold text-xl mb-4">Methodology Shock</h3>
-                    <div class="space-y-3 text-left">
-                        <p><strong>DSAI Approach:</strong> 4-month semesters, heavy exams, individual assignments, linear progression</p>
-                        <p><strong>Agile Thinking:</strong> Daily iterations, immediate feedback loops, cross-functional teams, continuous retrospectives</p>
-                    </div>
+                <div class="methodology-col agile-col">
+                    <h4>The Current Thinking: Agile Thinking</h4>
+                    <ul>
+                        <li>Iterative cycles</li>
+                        <li>Continuous delivery</li>
+                        <li>Daily collaboration</li>
+                        <li>Change is an opportunity</li>
+                        <li>Success = value delivered</li>
+                    </ul>
                 </div>
             </div>
             <div class="quote-box">
-                "I experienced firsthand why 70% of digital transformation projects fail - not due to bad technology, but due to poor collaboration systems"
-            </div>
-            <img src="images/classroom-energy.jpg" alt="Classroom Energy" class="mt-6 rounded-lg shadow-lg max-w-2xl w-full" 
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="photo-placeholder" style="display:none;">
-                📸 Image not found: Check if images/classroom-energy.jpg exists
-                <br><small>Make sure the images folder is in the same directory as index.html</small>
+                "Suddenly, the statistic that <span class="font-bold text-red-400">75% of digital transformations fail for non-technical reasons</span> wasn't just a number. I was living the 'why'—it's about the people, not the platform."
             </div>
         </div>
 
-        <!-- Slide 4: Learning Activities -->
+        <!-- Slide 4: Learning By Doing -->
         <div id="slide4" class="slide">
-            <h2 class="slide-title">🎲 Agile Learning Through Experiential Activities</h2>
+            <h2 class="slide-title">Learning Agile by Living Agile</h2>
             <div class="grid-2">
-                <div>
-                    <h3 class="font-bold text-xl mb-4">Beyond Traditional Learning</h3>
+                <div class="card">
+                    <h3 class="font-bold text-xl mb-4">Key Frameworks Experienced</h3>
                     <ul class="space-y-3 text-left">
-                        <li>• <strong>Padlet collaborative boards</strong> replacing individual presentations</li>
-                        <li>• <strong>Kanban visualization</strong> making team progress transparent</li>
-                        <li>• <strong>Crossword gamification</strong> instead of boring multiple choice quizzes</li>
-                        <li>• <strong>Sprint retrospectives</strong> after every major activity</li>
+                        <li>• <strong>Scrum Ceremonies:</strong> Daily stand-ups and retrospectives created a rhythm of communication and improvement.</li>
+                        <li>• <strong>Lean Principles:</strong> We learned to spot and eliminate "waste"—like pointless meetings or unclear requirements.</li>
+                        <li>• <strong>Design Thinking:</strong> We started with the user's problem, not our solution. A total game-changer.</li>
                     </ul>
                 </div>
-                <div>
-                    <h3 class="font-bold text-xl mb-4">Key Frameworks I Experienced</h3>
-                    <ul class="space-y-3 text-left">
-                        <li>• <strong>Scrum ceremonies:</strong> Daily standups, sprint planning, retrospectives</li>
-                        <li>• <strong>Lean principles:</strong> Eliminating waste, optimizing the whole system</li>
-                        <li>• <strong>Design thinking:</strong> Empathize → Define → Ideate → Prototype → Test</li>
-                    </ul>
+                <div class="card">
+                     <h3 class="font-bold text-xl mb-4">My "Aha!" Moment</h3>
+                    <p>As a technical person, my instinct is to jump to a solution. Design Thinking felt slow. My 'aha!' moment came when we almost designed a product for a problem nobody had. It taught me to fall in love with the user's problem first. This prevents the ultimate waste: building the wrong thing.</p>
                 </div>
             </div>
-            <div class="quote-box">
-                "I realized Agile isn't just about software - it's about optimizing any value stream and eliminating waste from human processes"
-            </div>
-            <img src="images/kanban-activity.jpg" alt="Kanban Activity" class="mt-6 rounded-lg shadow-lg max-w-2xl w-full" 
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="photo-placeholder" style="display:none;">
-                📸 Image not found: Check if images/kanban-activity.jpg exists
-                <br><small>Make sure the images folder is in the same directory as index.html</small>
+             <img src="images/team-final.jpg" alt="Kanban Activity" class="mt-6 rounded-lg shadow-lg max-w-xl w-full" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="photo-placeholder mt-6" style="display:none;">
+                Image not found: images/kanban-activity.jpg
+                <small>Make sure the images folder is in the same directory as index.html</small>
             </div>
         </div>
 
-        <!-- Slide 5: Three Principles -->
+        <!-- Slide 5: NEW - Three Principles -->
         <div id="slide5" class="slide">
-            <h2 class="slide-title">🎯 Three Agile Principles That Rewired My Brain</h2>
+            <h2 class="slide-title">Three Key Agile Principles</h2>
+            <p class="slide-content mb-6">Out of the 12 Agile Principles, these three particularly resonated with me during the course.</p>
             <div class="grid-3">
                 <div class="principle-card">
-                    <div class="emoji">🤝</div>
-                    <h3 class="font-bold text-lg mb-3">Principle #4: Daily Collaboration</h3>
-                    <p class="text-sm">"Business people and developers must work together daily"</p>
-                    <p class="text-xs mt-3 opacity-90">Playing the waiter/PM showed me how information silos create predictable failures</p>
+                    <h3>Principle #4: Daily Collaboration</h3>
+                    <p>"Business people and developers must work together daily." This isn't about more meetings; it's about creating a shared consciousness to eliminate the waste of miscommunication.</p>
                 </div>
                 <div class="principle-card">
-                    <div class="emoji">⚙️</div>
-                    <h3 class="font-bold text-lg mb-3">Principle #7: Working Solutions</h3>
-                    <p class="text-sm">"Working software is the primary measure of progress"</p>
-                    <p class="text-xs mt-3 opacity-90">MVP models vs. perfect architectures - iterate fast, learn faster</p>
+                    <h3>Principle #8: Sustainable Pace</h3>
+                    <p>"Agile processes promote sustainable development." This connected directly to the LEAN principle of eliminating waste. I learned that true speed isn't about burnout; it's about a consistent, predictable, and sustainable rhythm.</p>
                 </div>
                 <div class="principle-card">
-                    <div class="emoji">🔄</div>
-                    <h3 class="font-bold text-lg mb-3">Principle #12: Systematic Reflection</h3>
-                    <p class="text-sm">"Regularly reflect and become more effective"</p>
-                    <p class="text-xs mt-3 opacity-90">Built-in learning loops instead of post-mortem analysis</p>
+                    <h3>Principle #12: Systematic Reflection</h3>
+                    <p>"At regular intervals, the team reflects on how to become more effective." This is Kaizen in action. Improvement isn't an accident; it's a feature you design into your team's operating system.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 6: Team Project -->
+        <!-- Slide 6: Deep Dive on a Principle -->
         <div id="slide6" class="slide">
-            <h2 class="slide-title">🍕 Our Team Project: Living the Agile Transformation</h2>
+            <h2 class="slide-title">Deep Dive: The Power of Daily Collaboration</h2>
+            <p class="slide-subtitle">Agile Principle #4: "Business people and developers must work together daily throughout the project."</p>
             <div class="grid-2">
                 <div class="card">
-                    <h3 class="font-bold text-xl mb-4">The Agile Pizzeria Case Study</h3>
+                    <h3 class="font-bold text-xl mb-4">The Problem: The 'Waste' of Silos</h3>
+                    <p>In a traditional model, the gap between business and tech talks creates massive <span class="highlight">LEAN waste</span>: rework, misunderstood requirements, and features that miss the mark. Assumptions fill the silence, and those assumptions are expensive.</p>
+                </div>
+                <div class="card">
+                    <h3 class="font-bold text-xl mb-4">The Agile Solution: Shared Understanding</h3>
+                    <p>Daily collaboration isn't a formality. It's a mechanism for reducing the friction of communication. It ensures developers understand the 'why' behind the 'what', and business people see the 'how' as it evolves, allowing for course correction.</p>
+                </div>
+            </div>
+            <div class="quote-box">
+                "This principle destroyed my 'coder in a cave' mentality. I realized that the most critical code is the one that builds a shared understanding between teams."
+            </div>
+        </div>
+
+        <!-- Slide 7: Team Project Failure Simulation -->
+        <div id="slide7" class="slide">
+            <h2 class="slide-title">The Agile Pizzeria: A Communication Breakdown</h2>
+            <p class="slide-content mb-4">Our team project simulated a classic project failure, perfectly illustrating what happens when Principle #4 is ignored.</p>
+            <div class="grid-2">
+                <div class="card">
+                    <h3 class="font-bold text-xl mb-4">The Failure</h3>
                     <ul class="space-y-3 text-left">
-                        <li>• <strong>My character:</strong> Zwe - the PM/waiter experiencing information breakdown</li>
-                        <li>• <strong>Business problem:</strong> Owner wants pizza, chef only has toast equipment</li>
-                        <li>• <strong>Agile solution:</strong> Daily collaboration, psychological safety, rapid prototyping</li>
+                        <li>• <strong>The Conflict:</strong> The owner (business) wanted pizza. The chef (developer) only had toast equipment.</li>
+                        <li>• <strong>The Root Cause:</strong> A total lack of daily collaboration. The two sides weren't talking.</li>
+                        <li>• <strong>The Result:</strong> Wasted effort, frustration, and no value delivered. A predictable failure.</li>
                     </ul>
                 </div>
                 <div class="card">
                     <h3 class="font-bold text-xl mb-4">Our Innovation: "High 5, Help 1"</h3>
                     <p class="text-sm mb-3"><em>Inspired by Mel Robbins' "The High 5 Habit"</em></p>
-                    <ul class="space-y-2 text-left">
-                        <li>• <strong>5 appreciations weekly:</strong> Build psychological safety</li>
-                        <li>• <strong>1 improvement suggestion:</strong> Enable continuous learning</li>
-                        <li>• <strong>Result:</strong> Transformed from performing to truly collaborating</li>
+                    <p>To prevent our own Pizzeria-style failures, we created a simple system to force daily connection and improvement.</p>
+                    <ul class="space-y-2 text-left mt-3">
+                        <li>• <strong>5 Appreciations:</strong> Built trust and safety for open talk.</li>
+                        <li>• <strong>1 Improvement Suggestion:</strong> Made collaboration a skill to practice, not an assumption.</li>
                     </ul>
                 </div>
             </div>
             <div class="team-photos">
-                <img src="images/skit-photo1.jpg" alt="Team Skit Photo 1" class="team-photo-img" 
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="team-photo" style="display:none;">📸 Skit Photo 1 not found<br><small>images/skit-photo1.jpg</small></div>
-                
-                <img src="images/skit-photo2.jpg" alt="Team Skit Photo 2" class="team-photo-img" 
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="team-photo" style="display:none;">📸 Skit Photo 2 not found<br><small>images/skit-photo2.jpg</small></div>
-            </div>
-            
-            <!-- Additional main skit photo - same size as other main photos -->
-            <!-- <img src="images/skit-main.jpg" alt="Main Skit Performance Photo" class="mt-6 rounded-lg shadow-lg max-w-2xl w-full" 
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="photo-placeholder" style="display:none;">
-                📸 Image not found: Check if images/skit-main.jpg exists
-                <br><small>Add your main skit performance photo here</small>
-            </div> -->
-        </div>
-
-        <!-- Slide 7: Mindset Shifts -->
-        <div id="slide7" class="slide">
-            <h2 class="slide-title">🧠 Fundamental Mindset Transformations</h2>
-            <div class="space-y-6 max-w-5xl">
-                <div class="card">
-                    <h3 class="font-bold text-lg mb-3">From Individual Excellence to Collaborative Intelligence</h3>
-                    <p><strong>Old paradigm:</strong> "If I'm smart enough and have the right algorithms, I can solve any problem"</p>
-                    <p><strong>New paradigm:</strong> "Smart individuals create systems for organizational intelligence"</p>
-                </div>
-                <div class="card">
-                    <h3 class="font-bold text-lg mb-3">From Sequential to Iterative Value Creation</h3>
-                    <p><strong>Engineering mindset:</strong> Analyze → Design → Build → Test → Deploy</p>
-                    <p><strong>Agile mindset:</strong> Build → Measure → Learn → Repeat</p>
-                </div>
-                <div class="card">
-                    <h3 class="font-bold text-lg mb-3">From Technology-First to Human-Centered</h3>
-                    <p><strong>Before:</strong> "What can this AI/ML technology accomplish?"</p>
-                    <p><strong>After:</strong> "What do stakeholders need, and how can technology enable better collaboration?"</p>
-                </div>
+                <img src="images/skit-photo1.jpg" alt="Team Skit Photo 1" class="team-photo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="team-photo" style="display:none;">Skit Photo 1 not found<br><small>images/skit-photo1.jpg</small></div>
+                <img src="images/skit-photo2.jpg" alt="Team Skit Photo 2" class="team-photo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="team-photo" style="display:none;">Skit Photo 2 not found<br><small>images/skit-photo2.jpg</small></div>
             </div>
         </div>
-
-        <!-- Slide 8: Future Applications -->
+        
+        <!-- Slide 8: Mindset Rewired -->
         <div id="slide8" class="slide">
-            <h2 class="slide-title">🔮 Strategic Applications for My DSAI-PM Hybrid Career</h2>
+            <h2 class="slide-title">My Mindset, Rewired</h2>
+            <div class="space-y-6 max-w-5xl w-full">
+                <div class="card">
+                    <h3 class="font-bold text-lg mb-2">From: Individual Genius → To: Collaborative Intelligence</h3>
+                    <p><strong>Old thought:</strong> "My code will solve it."<br><strong>New thought:</strong> "Our shared understanding will solve it."</p>
+                </div>
+                <div class="card">
+                    <h3 class="font-bold text-lg mb-2">From: Sequential Perfection → To: Iterative Value</h3>
+                    <p><strong>Old way:</strong> Analyze → Design → Build → Test → Deploy.<br><strong>New way:</strong> Build → Measure → Learn → Repeat.</p>
+                </div>
+                <div class="card">
+                    <h3 class="font-bold text-lg mb-2">From: Technology-First → To: Human-Centered</h3>
+                    <p><strong>Old question:</strong> "What can this AI model do?"<br><strong>New question:</strong> "What does this person need?"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: From Theory to Practice -->
+        <div id="slide9" class="slide">
+            <h2 class="slide-title">Bridging the Gap: My Dream Career</h2>
             <div class="grid-2">
                 <div class="card">
-                    <h3 class="font-bold text-xl mb-4">Immediate Professional Applications</h3>
+                    <h3 class="font-bold text-xl mb-4">Immediate Applications</h3>
                     <ul class="space-y-3 text-left">
-                        <li>• <strong>Cross-functional AI project teams:</strong> Daily standup ceremonies for data science projects</li>
-                        <li>• <strong>Stakeholder collaboration:</strong> User story mapping for AI product features</li>
-                        <li>• <strong>Technical debt management:</strong> Sprint retrospectives for model improvement</li>
-                        <li>• <strong>Business translation:</strong> Bridge between AI capabilities and business value</li>
+                        <li>• Run data science projects with daily stand-ups.</li>
+                        <li>• Use user story mapping for AI features.</li>
+                        <li>• Hold sprint retrospectives to improve models.</li>
+                        <li>• Translate business needs into technical specs.</li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h3 class="font-bold text-xl mb-4">Concrete Frameworks I'll Implement</h3>
+                    <h3 class="font-bold text-xl mb-4">My Bridge-Builder Toolkit</h3>
                     <ul class="space-y-3 text-left">
-                        <li>• <strong>Scrum for Data Science:</strong> Sprint planning for model iterations</li>
-                        <li>• <strong>Kanban for ML Pipeline:</strong> Visualize data workflows</li>
-                        <li>• <strong>Design Thinking for AI:</strong> Human-centered AI development</li>
-                        <li>• <strong>"High 5, Help 1":</strong> Weekly retrospectives for psychological safety</li>
+                        <li>• <strong>Translate Needs into Sprints:</strong> Use Scrum to break down complex business goals into manageable sprints for a data science team.</li>
+                        <li>• <strong>Visualize the Data Pipeline:</strong> Apply Kanban to make the entire ML workflow transparent to all stakeholders.</li>
+                        <li>• <strong>Problem Centered Innovation :</strong> Use Design Thinking to solve a real user problem <strong>before</strong> building the product.</li>
                     </ul>
                 </div>
             </div>
             <div class="quote-box">
-                "I can speak both human and machine language fluently, enabling true digital transformation rather than just digital adoption"
+                "My goal is no longer just to build technology. It's to build technology that genuinely helps people, by connecting their real-world needs with what's technically possible."
             </div>
         </div>
 
-        <!-- Slide 9: Final Reflection -->
-        <div id="slide9" class="slide">
-            <h2 class="slide-title" style="margin-top: 1rem;">🎊 Reflection on Transformation & Future Commitment</h2>
+        <!-- Slide 10: Final Reflection -->
+        <div id="slide10" class="slide">
+            <h2 class="slide-title" style="margin-top: 1rem;">The Transformation and My Commitment</h2>
             <div class="space-y-6 max-w-4xl">
                 <div class="card">
                     <h3 class="font-bold text-xl mb-4">The Unexpected Discovery</h3>
-                    <p><strong>I came to learn:</strong> Project management frameworks and business analytics tools</p>
-                    <p><strong>I discovered:</strong> Digital transformation is about transforming human collaboration systems</p>
-                    <p><strong>I'm leaving with:</strong> A dream, to be the bridge-builder who designs organizational intelligence systems</p>
+                    <p><strong>I came for:</strong> Project management tools.<br>
+                       <strong>I found:</strong> A new way to think about collaboration.<br>
+                       <strong>I'm leaving with:</strong> A mission to design systems of organizational intelligence, not just intelligent systems.
+                    </p>
                 </div>
                 <div class="quote-box">
-                    "I will embed Agile thinking principles into every technical project I touch, creating delightful stakeholder experiences through human-centered collaboration systems"
-                    <br><br>
-                    <strong>My goal is to build technology that genuinely helps people. This happens by working in close partnership, connecting their real-world needs with what's technically possible.</strong>
+                    "I commit to embedding Agile principles into every project. My focus will be on creating delightful stakeholder experiences through human-centered, collaborative systems. I will be the bridge."
                 </div>
             </div>
-            <!-- Team photo outside the main container for better layout -->
             <div class="team-photos mt-6">
                 <img src="images/team-final-2.jpg" alt="Team Photo" class="rounded-lg shadow-lg max-w-2xl w-full" 
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 <div class="photo-placeholder" style="display:none;">
-                    📸 Image not found: Check if images/team-final-2.jpg exists
+                    Image not found: images/team-final-2.jpg
                     <br><small>Add your team photo here</small>
                 </div>
             </div>
@@ -463,22 +474,32 @@
     <!-- <button id="prevBtn" class="nav-button">‹</button>
     <button id="nextBtn" class="nav-button">›</button>
     <div class="slide-counter">
-        <span id="currentSlide">1</span> / <span id="totalSlides">9</span>
+        <span id="currentSlide">1</span> / <span id="totalSlides">10</span>
     </div> -->
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 9;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
 
         function showSlide(n) {
-            const slides = document.querySelectorAll('.slide');
-            if (n > totalSlides) currentSlide = 1;
-            if (n < 1) currentSlide = totalSlides;
+            // This ensures we loop back to the start or end
+            if (n > totalSlides) { currentSlide = 1; }
+            if (n < 1) { currentSlide = totalSlides; }
+
+            slides.forEach((slide, index) => {
+                // We use index + 1 to match the 1-based currentSlide
+                if (index + 1 === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
             
-            slides.forEach(slide => slide.classList.remove('active'));
-            document.getElementById(`slide${currentSlide}`).classList.add('active');
+            // Update the slide counter text
             document.getElementById('currentSlide').textContent = currentSlide;
         }
+
 
         function nextSlide() {
             currentSlide++;
@@ -496,20 +517,31 @@
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            }
+            if (e.key === 'ArrowLeft') {
+                 e.preventDefault();
+                prevSlide();
+            }
         });
 
         // Initialize
         document.getElementById('totalSlides').textContent = totalSlides;
-        showSlide(1);
+        // Correctly get the first slide to show
+        const firstSlide = document.querySelector('.slide');
+        if (firstSlide) {
+            firstSlide.classList.add('active');
+        }
+        document.getElementById('currentSlide').textContent = 1;
+
 
         // Print functionality
         function printToPDF() {
             window.print();
         }
 
-        // Add print button (optional)
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey && e.key === 'p') {
                 e.preventDefault();
